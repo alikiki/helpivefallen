@@ -1,6 +1,6 @@
 # helpivefallen
 
-`helpivefallen` is a personal knowledge tool that I use to take notes, write down small diary entries, and create flashcards on the fly. 
+`helpivefallen` is a small personal knowledge tool that I use to take notes, write down small diary entries, and create flashcards on the fly. 
 
 All the notes, diaries, and flashcard entries are purposefully **append-only**. The point isn't to have a pristine set of notes that I can import to my local machine - it's to capture thoughts and learnings on the fly so that I can go back and review/edit them at the day's end. The editing session in and of itself is integral to how I remember things, so the tool embeds this behavior into its usage model. 
 
