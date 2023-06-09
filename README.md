@@ -36,3 +36,5 @@ Alternatively, you can save a note by prefacing a message with `Nn `. For exampl
 When I'm reading, I frequently look up definitions/concepts. However, Siri is usually terrible at understanding what I want, and doing a Google search means I have to parse through search results. This tool makes it easy for me to quickly look up a definition or a concept, and turn right back to my reading without interrupting my focus too heavily. 
 
 I also jot down notes in the form of question-answers in a small notebook or in the book itself. But I usually get lazy and don't import the notes into my spaced repetition system. I have a horrible memory, so usually I'll have forgotten what I read a week or two later (provided that I stop thinking about it). This tool lets me avoid migrating notes every single time I'm learning/reading, and keeps my flashcards updated and ready-for-review. 
+
+For posterity: the name `helpivefallen` is from a popular meme. The idea is that the bot helps me "get back up" after I've fallen... into confusion. 
