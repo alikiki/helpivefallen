@@ -1,0 +1,9 @@
+venv
+.DS_Store
+config.json
+fetch_cards.sh
+fetch_notes.sh
+fetch_diary.sh
+push_bot.sh
+run_bot.sh
+scratch.md
