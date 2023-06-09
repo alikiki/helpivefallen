@@ -4,6 +4,15 @@
 
 All the notes, diaries, and flashcard entries are purposefully **append-only**. The point isn't to have a pristine set of notes that I can import to my local machine - it's to capture thoughts and learnings on the fly so that I can go back and review/edit them at the day's end. The editing session in and of itself is integral to how I remember things, so the tool embeds this behavior into its usage model. 
 
+## Usage
+
+1. Rename the config file to `config.json`
+2. Go to @BotFather in Telegram, and create a new bot. BotFather will give you a Bot ID/Key which you should paste into `config.json`. 
+3. Find your Telegram ID and paste into `config.json`.
+4. Find your OpenAI API key and paste into `config.json`.
+5. Run `pip install -r requirements.txt`.
+6. Run `python bot.py`
+
 ## Commands
 
 `/define [WORD]`: defines a word using GPT-3.5; only defines the first word. Overkill? Probably. 
