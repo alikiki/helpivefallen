@@ -21,7 +21,7 @@ REGEXES = [NOTE_REGEX, QA_REGEX]
 TELEGRAM_ID = get_config()['TELEGRAM_ID']
 
 def confirm_id(iden):
-    return iden == TELEGRAM_ID
+    return iden in TELEGRAM_ID
     
 def write_to_file(file, args):
     with open(file, "a") as f:
@@ -52,12 +52,16 @@ async def explain_concept(concept):
 
 def gpt_methods(fn, arg_fn):
     async def f(update: Update, context: ContextTypes.DEFAULT_TYPE):
-        try:
-            await context.bot.send_message(chat_id=update.effective_chat.id, text="Searching...")
-            definition = await fn(arg_fn(context.args))
-            await context.bot.send_message(chat_id=update.effective_chat.id, text=definition)
-        except:
-            await context.bot.send_message(chat_id=update.effective_chat.id, text="Something wrong 🚨")
+        if confirm_id(update.effective_user.id):
+            try:
+                await context.bot.send_message(chat_id=update.effective_chat.id, text="Searching...")
+                definition = await fn(arg_fn(context.args))
+                await context.bot.send_message(chat_id=update.effective_chat.id, text=definition)
+            except:
+                await context.bot.send_message(chat_id=update.effective_chat.id, text="Something wrong 🚨")
+        else:
+            await context.bot.send_message(chat_id=update.effective_chat.id, text="Sorry, you are not authorized!")
+            
 
     return f
 
@@ -65,7 +69,7 @@ define = gpt_methods(define_word, lambda x: x[0])
 explain = gpt_methods(explain_concept, lambda x: ' '.join(x).strip())
 
 async def diary(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    if confirm_id(update.effective_chat.id):
+    if confirm_id(update.effective_user.id):
         try:
             write_to_file("/root/helpivefallen/diary.md", ' '.join(context.args).strip())
             await context.bot.send_message(chat_id=update.effective_chat.id, text="Committed")
@@ -76,7 +80,7 @@ async def diary(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await context.bot.send_message(chat_id=update.effective_chat.id, text="Sorry, you are not authorized!")
     
 async def qa(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    if confirm_id(update.effective_chat.id):
+    if confirm_id(update.effective_user.id):
         try:
             q, a = QA_REGEX.search(' '.join(context.args)).groups()
             q, a = q.strip(), a.strip()
@@ -92,7 +96,7 @@ async def qa(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 async def note(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    if confirm_id(update.effective_chat.id):
+    if confirm_id(update.effective_user.id):
         try:
             note = ' '.join(context.args)
             write_to_file("/root/helpivefallen/notes.md", note)
@@ -103,7 +107,7 @@ async def note(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await context.bot.send_message(chat_id=update.effective_chat.id, text="Sorry, you are not authorized!")
 
 async def noncommander(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    if confirm_id(update.effective_chat.id):
+    if confirm_id(update.effective_user.id):
         try: 
             match = NOTE_REGEX.search(update.message.text)
             write_to_file("/root/helpivefallen/notes.md", match.group(1).strip())
