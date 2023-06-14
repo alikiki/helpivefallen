@@ -1,5 +1,8 @@
 {
     "TELEGRAM_KEY": "",
-    "TELEGRAM_ID": 1234,
+    "TELEGRAM_ID": [
+        1234,
+        5678
+    ],
     "OPENAI_KEY": ""
 }

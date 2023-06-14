@@ -42,14 +42,6 @@ def ask_gpt(prompt):
     )
     return response.choices[0].text.strip()
 
-async def define_word(word):
-    prompt = f"Define the word: {word}\n\nDefinition: "
-    return ask_gpt(prompt)
-
-async def explain_concept(concept):
-    prompt = f"Explain the following concept: {concept}\n\nExplanation: "
-    return ask_gpt(prompt)
-
 def gpt_methods(fn, arg_fn):
     async def f(update: Update, context: ContextTypes.DEFAULT_TYPE):
         if confirm_id(update.effective_user.id):
@@ -64,6 +56,14 @@ def gpt_methods(fn, arg_fn):
             
 
     return f
+
+async def define_word(word):
+    prompt = f"Define the word: {word}\n\nDefinition: "
+    return ask_gpt(prompt)
+
+async def explain_concept(concept):
+    prompt = f"Explain the following concept: {concept}\n\nExplanation: "
+    return ask_gpt(prompt)
 
 define = gpt_methods(define_word, lambda x: x[0])
 explain = gpt_methods(explain_concept, lambda x: ' '.join(x).strip())
